@@ -21,21 +21,21 @@ function SimpleProtocol(source, options) {
 	// source is a readable stream, such as a socket or file
 	this._source = source;
 
-	const self = this;
+	//const self = this;
 
-	source.on('end', () => {
-		self.push(null);
-	});
-
-	source.on('readable', () => {
-		self.read(0);
-	});
+	//source.on('end', () => {
+	//	self.push(null);
+	//});
+	//
+	//source.on('readable', () => {
+	//	self.read(0);
+	//});
 
 	this._rawHeader = [];
 	this.header = null;
 }
 
-SimpleProtocol.prototype._read = (n) => {
+SimpleProtocol.prototype._read = function () {
 	if (!this._inBody) {
 		let chunk = this._source.read();
 
@@ -83,8 +83,6 @@ SimpleProtocol.prototype._read = (n) => {
 
 			this.emit('header', this.header);
 		}
-
-
 	} else {
 		let chunk = this._source.read();
 		if (chunk) this.push(chunk);
