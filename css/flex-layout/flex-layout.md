@@ -26,3 +26,8 @@ Note: this property has no effect when there is only one line of flex items. **U
 5.	`flex: 0 1 auto | none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`(recommended)	This is the shorthand for flex-grow, flex-shrink and flex-basis combined
 6.	`align-self: <values see align-items>`
 
+####some notices
+1.  假设场景：container使用flex布局，包含A和B，要求A居中，B在A后面，justify-content:center不解决问题，会一起居中；需要新建元素C包含A和B，
+container使用justify-content:center，同时把C设置为相对定位，为什么呢？这样可以为B提供定位上下文，然后B绝对定位，就会脱离文档流，不再占用C空间，
+从而A完美居中，B根据C调整位置即可。
+
